@@ -1,0 +1,335 @@
+/* fonts ====================================*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&display=swap");
+/* css resets ===============================*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-secondary);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+/* standardizations =========================*/
+:root {
+  /* height of footer and header */
+  --header-height: 4rem;
+  --footer-height: 3rem;
+  /* font config */
+  --font-primary: "Sora", sans-serif;
+  --font-secondary: "Inter", sans-serif;
+  --font-regular: 1.2rem;
+  --font-medium: 1.5rem;
+  --light: 300;
+  --regular: 400;
+  --semi-bold: 600;
+  /* colores */
+  --color-primary: #6c00ff;
+  --color-secondary: #3c79f5;
+  --color-green: #03c988;
+  --color-red: #dc3535;
+  --color-dark: #222222;
+  --color-white: #ffffff;
+  --color-gray: #eeeeee;
+  --color-gray-dark: #dbdbdb;
+  --color-muted: #777777;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 100%;
+  padding: 0 4rem;
+  margin: 0 auto;
+  max-width: 1366px;
+}
+
+/* header */
+.header-page {
+  background-color: var(--color-primary);
+}
+
+.nav {
+  display: flex;
+  height: var(--header-height);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  font-family: var(--font-primary);
+  font-size: var(--font-medium);
+  font-weight: var(--semi-bold);
+  color: var(--color-white);
+}
+
+.profile-name {
+  font-family: var(--font-primary);
+  font-weight: var(--light);
+  color: var(--color-white);
+}
+
+/* content header ===========================*/
+.content {
+  padding-top: 0.5rem;
+  height: calc(100vh - var(--header-height));
+}
+
+.info-finance-header {
+  display: flex;
+  width: 100%;
+  height: 6rem;
+  background-color: var(--color-white);
+  border-radius: 3px;
+  box-shadow: 0px 1px 5px 0px var(--color-gray-dark);
+  margin-top: 1rem;
+}
+
+.card-info-finance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.card-info-finance:nth-child(2) {
+  border-left: 1px dashed var(--color-gray-dark);
+  border-right: 1px dashed var(--color-gray-dark);
+}
+.card-info-finance:nth-child(1) {
+  border-radius: 3px 0 0 3px;
+}
+.card-info-finance:nth-child(3) {
+  border-radius: 0px 3px 3px 0px;
+}
+
+.title-card,
+.value-card {
+  font-size: larger;
+}
+
+.title-card {
+  color: var(--color-primary);
+}
+
+.incomes {
+  color: var(--color-green);
+}
+
+.expenses {
+  color: var(--color-red);
+}
+
+/* content transactions =====================*/
+.transactions {
+  padding: 1rem 0;
+}
+
+.header-transactions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-box-transactions {
+  color: var(--color-primary);
+  margin-top: 10px;
+  font-weight: var(--regular);
+}
+
+.line {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid var(--color-gray);
+  padding: 0;
+}
+
+.new-transaction-btn {
+  border: none;
+  outline: none;
+  background: var(--color-green);
+  padding: 0.5rem 1rem;
+  color: var(--color-white);
+  cursor: pointer;
+  text-align: end;
+  margin-bottom: 5px;
+}
+
+.new-transaction-btn:hover {
+  background-color: var(--color-primary);
+}
+
+.card-transaction {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-white);
+  padding: 1.5rem 0.5rem;
+  border-bottom: 1px dashed var(--color-gray-dark);
+  box-shadow: 0px 1px 3px 0px var(--color-gray-dark);
+  border-radius: 2px;
+}
+
+.card-transaction:last-child {
+  border-bottom: none;
+}
+
+.description-transaction {
+  color: var(--color-muted);
+}
+/* footer page ==============================*/
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--footer-height);
+  background-color: var(--color-dark);
+  font-weight: var(--light);
+  color: var(--color-white);
+  width: 100%;
+}
+
+/* modal */
+.hide {
+  visibility: hidden;
+}
+
+.show {
+  visibility: visible;
+}
+
+.modal {
+  display: grid;
+  grid-template-columns: 100%;
+  place-items: center;
+  background-color: #60606093;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 1rem;
+}
+
+.title-form-modal {
+  color: var(--color-primary);
+  font-weight: var(--semi-bold);
+}
+
+.modal-content {
+  width: 30rem;
+  height: auto;
+  background-color: var(--color-white);
+  border-radius: 2px;
+}
+
+.purchase-form {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  outline: none;
+}
+
+.purchase-form input {
+  width: 100%;
+  height: 38px;
+  border: 1px solid var(--color-muted);
+  outline: transparent;
+  padding: 0 10px;
+}
+
+.purchase-form label {
+  color: var(--color-primary);
+  font-size: smaller;
+  font-weight: var(--semi-bold);
+}
+
+.desc-label,
+.value-label {
+  margin-bottom: 5px;
+}
+
+.value-label {
+  margin-top: 20px;
+}
+
+.purchase-form input:focus {
+  background-color: var(--color-gray);
+  border: 1px solid var(--color-primary);
+}
+
+.btn-div {
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.btn {
+  padding: 0.5rem 1.5rem;
+  width: max-content;
+  border: none;
+  outline: none;
+  color: var(--color-white);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.btn-add {
+  background-color: var(--color-green);
+}
+
+.btn-cancel {
+  background-color: var(--color-muted);
+}
+
+.btn-add:hover {
+  background-color: var(--color-primary);
+}
+
+.btn-cancel:hover {
+  background-color: var(--color-dark);
+}
+
+/* media queries */
+@media only screen and (max-width: 992px) {
+  .card-info-finance {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 668px) {
+  .info-finance-header {
+    flex-direction: column;
+    height: auto;
+  }
+  .card-info-finance {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 6rem;
+    border-bottom: 1px dashed var(--color-gray-dark);
+  }
+  .card-info-finance:last-child {
+    border-bottom: none;
+  }
+  .card-info-finance:nth-child(even) {
+    border-left: none;
+    border-right: none;
+  }
+}

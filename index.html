@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- title -->
+    <title>Finance Control - Manage your money here!</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <!-- css -->
+    <link rel="stylesheet" href="./assets/css/stylesheet.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <header class="header-page">
+      <div class="container">
+        <nav class="nav">
+          <a href="#" class="nav-brand">Finance Control</a>
+          <div class="dropdown-menu">
+            <ul class="navbar">
+              <li><a class="profile-name" href="#">Joana</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end - header -->
+
+    <!-- basic info finance-->
+    <div class="container">
+      <div class="content">
+        <div class="info-finance-header">
+          <div class="card-info-finance">
+            <span class="title-card">Saldo Atual:</span>
+            <span class="value-card">R$ 5.987,00</span>
+          </div>
+          <div class="card-info-finance">
+            <span class="title-card">Receitas:</span>
+            <span class="value-card incomes"> + R$ 2.354,00</span>
+          </div>
+          <div class="card-info-finance">
+            <span class="title-card">Despesas:</span>
+            <span class="value-card expenses"> - R$ 1.758,00</span>
+          </div>
+        </div>
+        <!-- Transactions -->
+        <div class="transactions">
+          <div class="header-transactions">
+            <h3 class="title-box-transactions">Recent Transactions</h3>
+            <a class="new-transaction-btn" href="#modal">New Transact</a>
+          </div>
+          <hr class="line" />
+        </div>
+        <!-- transaction exemplo -->
+        <div class="card-transaction">
+          <p class="description-transaction">You buy the SSD in Aliexpress</p>
+          <div class="value-purchase incomes">
+            <span>+ R$</span>
+            <span>17,89</span>
+          </div>
+        </div>
+        <!-- end - transaction exemplo -->
+        <!-- transaction exemplo -->
+        <div class="card-transaction">
+          <p class="description-transaction">Notebook Asus Aspire 7</p>
+          <div class="value-purchase expenses">
+            <span>- R$</span>
+            <span>3.999,79</span>
+          </div>
+        </div>
+        <!-- end - transaction exemplo -->
+        <!-- end - Transactions -->
+      </div>
+    </div>
+    <!-- end - basic info finance-->
+
+    <!-- modal -->
+    <div class="modal hide" id="modal" >
+      <div class="modal-content">
+        <form action="#">
+          <h3 class="title-form-modal">New Transaction</h3>
+          <fieldset class="purchase-form">
+            <!-- description purchase -->
+            <label class="desc-label" for="description">Purchase</label>
+            <input type="text" name="description" id="description" />
+            <!-- price purchase -->
+            <label class="value-label" for="value">Price</label>
+            <input type="text" name="value" id="value" />
+          </fieldset>
+          <div class="btn-div">
+            <button class="btn btn-cancel" type="reset">Cancel</button>
+            <button class="btn btn-add" type="submit">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- end-modal -->
+
+    <!-- footer -->
+    <div class="footer">
+      <p>Copyright &#169; FinanceMasters - 2023. All rights reserved.</p>
+    </div>
+    <!-- end - footer -->
+    <script src="./assets/js/index.js"></script>
+  </body>
+</html>
