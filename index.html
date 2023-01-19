@@ -49,20 +49,15 @@
           <div class="transactions">
             <div class="header-transactions">
               <h3 class="title-box-transactions">Recent Transactions</h3>
-              <a class="new-transaction-btn" href="#modal">New Transact</a>
+              <button class="new-transaction-btn">New Transact</button>
             </div>
             <hr class="line" />
           </div>
-          <!-- transaction exemplo -->
-          <div class="card-transaction">
-            <p class="description-transaction">You buy the SSD in Aliexpress</p>
-            <div class="value-purchase incomes">
-              <span>+ R$</span>
-              <span>17,89</span>
-            </div>
+          <div class="transactions-list">
+            <!-- transaction exemplo -->
+            <!-- end - transaction exemplo -->
           </div>
-          <!-- end - transaction exemplo -->
-          
+
           <!-- end - Transactions -->
         </div>
       </div>
@@ -70,17 +65,40 @@
     </main>
 
     <!-- modal -->
-    <div class="modal hide" id="modal" >
+    <div class="modal hide" id="modal">
       <div class="modal-content">
         <form action="#">
           <h3 class="title-form-modal">New Transaction</h3>
-          <fieldset class="purchase-form">
+          <fieldset class="transact-form">
+            <!-- type transact  -->
+            <label class="desc-label" for="description">Type Transact</label>
+            <input
+              type="text"
+              name="Type"
+              id="type-transact"
+              placeholder="Type Transact. Pix, TED, etc"
+              required
+            />
             <!-- description purchase -->
-            <label class="desc-label" for="description">Purchase</label>
-            <input type="text" name="description" id="description" />
+            <label class="desc-label" for="description"
+              >Short Descript Transact</label
+            >
+            <input
+              type="text"
+              name="description"
+              id="description"
+              placeholder="Transact Description"
+              required
+            />
             <!-- price purchase -->
-            <label class="value-label" for="value">Price</label>
-            <input type="text" name="value" id="value" />
+            <label class="value-label" for="value">Value</label>
+            <input
+              type="text"
+              name="value"
+              id="value"
+              placeholder="Insert Value Transact"
+              required
+            />
           </fieldset>
           <div class="btn-div">
             <button class="btn btn-cancel" type="reset">Cancel</button>
@@ -92,7 +110,10 @@
     <!-- end-modal -->
 
     <!-- footer -->
+    <!-- <footer class="footer">
+      <p>Copyright &#169; FinanceMasters - 2023. All rights reserved.</p>
+    </footer> -->
     <!-- end - footer -->
-    <script src="./assets/js/index.js"></script>
+    <script type="module" src="./assets/js/index.js"></script>
   </body>
 </html>

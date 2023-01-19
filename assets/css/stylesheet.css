@@ -45,6 +45,7 @@ li {
   --color-gray: #eeeeee;
   --color-gray-dark: #dbdbdb;
   --color-muted: #777777;
+  --color-bill: #ffffd0;
 }
 
 .container {
@@ -83,14 +84,14 @@ li {
 /* content header ===========================*/
 .content {
   padding-top: 0.5rem;
-  height: calc(100vh - var(--header-height));
+  height: calc(100vh - (var(--header-height) + var(--footer-height)));
 }
 
 .info-finance-header {
   display: flex;
   width: 100%;
   height: 6rem;
-  background-color: var(--color-white);
+  background-color: var(--color-bill);
   border-radius: 3px;
   box-shadow: 0px 1px 5px 0px var(--color-gray-dark);
   margin-top: 1rem;
@@ -122,6 +123,11 @@ li {
 
 .title-card {
   color: var(--color-primary);
+}
+
+.value-transact {
+  display: flex;
+  align-items: center;
 }
 
 .incomes {
@@ -174,16 +180,20 @@ li {
 .card-transaction {
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-white);
-  padding: 1.5rem 0.5rem;
+  background-color: var(--color-bill);
+  padding: 1.5rem 1.5rem;
   border-bottom: 1px dashed var(--color-gray-dark);
   box-shadow: 0px 1px 3px 0px var(--color-gray-dark);
   border-radius: 2px;
 }
 
-.card-transaction:last-child {
-  border-bottom: none;
+.type-transaction {
+  font-weight: var(--semi-bold);
+  margin-bottom: 10px;
 }
+/* .card-transaction:last-child {
+  border-bottom: none;
+} */
 
 .description-transaction {
   color: var(--color-muted);
@@ -229,14 +239,14 @@ form {
   border-radius: 2px;
 }
 
-.purchase-form {
+.transact-form {
   display: flex;
   flex-direction: column;
   border: none;
   outline: none;
 }
 
-.purchase-form input {
+.transact-form input {
   width: 100%;
   height: 38px;
   border: 1px solid var(--color-muted);
@@ -244,7 +254,7 @@ form {
   padding: 0 10px;
 }
 
-.purchase-form label {
+.transact-form label {
   color: var(--color-primary);
   font-size: smaller;
   font-weight: var(--semi-bold);
@@ -255,11 +265,15 @@ form {
   margin-bottom: 5px;
 }
 
-.value-label {
+label {
   margin-top: 20px;
 }
 
-.purchase-form input:focus {
+label:first-child {
+  margin-top: 0px;
+}
+
+.transact-form input:focus {
   background-color: var(--color-gray);
   border: 1px solid var(--color-primary);
 }
@@ -295,6 +309,12 @@ form {
 
 .btn-cancel:hover {
   background-color: var(--color-dark);
+}
+
+.error {
+  margin-top: 10px;
+  color: red;
+  font-size: small;
 }
 
 /* media queries */
