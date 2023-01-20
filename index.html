@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- title -->
-    <title>Finance Control - Manage your money here!</title>
+    <title>Finance Control - Gerencie o seu dinheiro aqui!</title>
     <!-- favicon -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <!-- css -->
@@ -48,8 +48,8 @@
           <!-- Transactions -->
           <div class="transactions">
             <div class="header-transactions">
-              <h3 class="title-box-transactions">Recent Transactions</h3>
-              <button class="new-transaction-btn">New Transact</button>
+              <h3 class="title-box-transactions">Transações Recentes</h3>
+              <button class="new-transaction-btn">Nova Transação</button>
             </div>
             <hr class="line" />
           </div>
@@ -68,41 +68,59 @@
     <div class="modal hide" id="modal">
       <div class="modal-content">
         <form action="#">
-          <h3 class="title-form-modal">New Transaction</h3>
+          <legend class="title-form-modal">Nova Transação</legend>
           <fieldset class="transact-form">
+            <!-- input radio for type action -->
+            <div class="fieldset-input-radio">
+              <div class="div-input-radio">
+                <input type="radio" id="pay" name="naturetransaction" value="pay" required checked />
+                <label for="pay">Pagar</label>
+              </div>
+
+              <div class="div-input-radio">
+                <input
+                  type="radio"
+                  id="receive"
+                  name="naturetransaction"
+                  value="receive"
+                  required
+                />
+                <label for="receive">Receber</label>
+              </div>
+            </div>
             <!-- type transact  -->
-            <label class="desc-label" for="description">Type Transact</label>
+            <label class="desc-label" for="description"
+              >Tipo da Transação</label
+            >
             <input
               type="text"
               name="Type"
               id="type-transact"
-              placeholder="Type Transact. Pix, TED, etc"
+              placeholder=" ex.Pix, TED, etc"
               required
             />
-            <!-- description purchase -->
-            <label class="desc-label" for="description"
-              >Short Descript Transact</label
-            >
+            <!-- description transact -->
+            <label class="desc-label" for="description">Descrição</label>
             <input
               type="text"
               name="description"
               id="description"
-              placeholder="Transact Description"
+              placeholder="Descrição"
               required
             />
-            <!-- price purchase -->
-            <label class="value-label" for="value">Value</label>
+            <!-- price transact -->
+            <label class="value-label" for="value">Valor</label>
             <input
               type="text"
               name="value"
               id="value"
-              placeholder="Insert Value Transact"
+              placeholder="Insira o valor da transação"
               required
             />
           </fieldset>
           <div class="btn-div">
-            <button class="btn btn-cancel" type="reset">Cancel</button>
-            <button class="btn btn-add" type="submit">Register</button>
+            <button class="btn btn-cancel" type="reset">Cancelar</button>
+            <button class="btn btn-add" type="submit">Cadastrar</button>
           </div>
         </form>
       </div>

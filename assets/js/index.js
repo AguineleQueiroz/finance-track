@@ -5,47 +5,51 @@ const keyOfDataLocalStorage = 'transactions';
 const btnRegisterTransaction = document.querySelector(".btn-add");
 
 /* get all transacts */
-const getTransactsInLocalStorage = localStorage.getItem(keyOfDataLocalStorage);
+const getTransactionsOnLocalStorage = localStorage.getItem(keyOfDataLocalStorage);
 
 /* add new transact in localStorage */
-function addLocalStorage(data) {
+function addTransactionInLocalStorage(data) {
     localStorage.setItem(keyOfDataLocalStorage, data);
 }
+
 /* Send new transact to the localStorage */
-function setDataInLocalStorage(obj) {
-    if (getTransactsInLocalStorage === null) {
-        addLocalStorage(JSON.stringify([obj]));
+function sendDataToLocalStorage(obj) {
+    if (getTransactionsOnLocalStorage === null) {
+        addTransactionInLocalStorage(JSON.stringify([obj]));
     } else {
-        addLocalStorage(JSON.stringify([...JSON.parse(localStorage.getItem(keyOfDataLocalStorage)), obj]));
+        addTransactionInLocalStorage(JSON.stringify([...JSON.parse(localStorage.getItem(keyOfDataLocalStorage)), obj]));
     }
 }
-/* get data of the inputs */
+
 const getDataForm = () => {
-    const typeTransact = document.getElementById("type-transact").value;
-    const descriptionTransact = document.getElementById("description").value;
-    const valueTransact = document.getElementById("value").value;
-    processDataInputs(typeTransact, descriptionTransact, valueTransact);
+    const natureOfTransaction = document.querySelector("input[name=naturetransaction]:checked").value;
+    const typeTransaction = document.getElementById("type-transact").value;
+    const descriptionTransaction = document.getElementById("description").value;
+    const valueTransaction = document.getElementById("value").value;
+    const arr = [natureOfTransaction, typeTransaction, descriptionTransaction, valueTransaction];
+    processDataInputs(...arr);
 }
 
 /* checks whether or not to send data to localStorage */
-function processDataInputs(typeTransact, descriptionTransact, valueTransact) {
-    if (!typeTransact || !descriptionTransact || !valueTransact) {
-        showMessageError();
+function processDataInputs(natureOfTransaction, typeTransaction, descriptionTransaction, valueTransaction) {
+    if (!natureOfTransaction || !typeTransaction || !descriptionTransaction || !valueTransaction) {
+        showMessageErrorInDOM();
     } else {
-        hideMessageError();
-        const dataObj = { typeTransact, descriptionTransact, valueTransact }
-        setDataInLocalStorage(dataObj);
+        hideMessageErrorInDOM();
+        const dataObj = { natureOfTransaction, typeTransaction, descriptionTransaction, valueTransaction }
+        sendDataToLocalStorage(dataObj);
         closeModal();
     }
 }
+
 /* call of the functions for the add new transacts */
-const addNewTransact = (event) => {
+const addNewTransaction = (event) => {
     event.preventDefault();
     getDataForm();
 }
 
 /* events on html ================================================================================== */
-function showMessageError() {
+function showMessageErrorInDOM() {
     const element = document.querySelector(".error");
     if (element === null) {
         const fieldSet = document.querySelector(".transact-form");
@@ -63,38 +67,38 @@ function showMessageError() {
     }
 }
 
-function hideMessageError() {
+function hideMessageErrorInDOM() {
     const message = document.querySelector(".error");
     if (message !== null) message.classList.add("hide");
 }
 
-function renderTransactions(transact) {
+function renderTransactionsInDOM(transaction) {
     const transactionsList = document.querySelector(".transactions-list");
-    let transactHtml = document.createElement("div");
-    transactHtml.innerHTML = `
+    let transactionHtml = document.createElement("div");
+    transactionHtml.innerHTML = `
         <div class="card-transaction">
             <div class="body-text-transaction">
-                <p class="type-transaction">${transact.typeTransact}</p>
-                <p class="description-transaction">${transact.descriptionTransact}</p>
+                <p class="type-transaction">${transaction.typeTransaction}</p>
+                <p class="description-transaction">${transaction.descriptionTransaction}</p>
             </div>
             <div class="value-transact">
               <span>+ R$</span>
-              <span>${transact.valueTransact}</span>
+              <span>${transaction.valueTransaction}</span>
             </div>
         </div>`;
 
-    transactionsList.appendChild(transactHtml);
+    transactionsList.prepend(transactionHtml);
 }
 
-const showTransactions = () => {
-    if (getTransactsInLocalStorage) {
+const showTransactionsInDOM = () => {
+    if (getTransactionsOnLocalStorage) {
         const arrAllTransactions = JSON.parse(localStorage.getItem(keyOfDataLocalStorage));
-        arrAllTransactions.forEach(obj => renderTransactions(obj));
+        arrAllTransactions.forEach(obj => renderTransactionsInDOM(obj));
     }
     return;
 }
 
-showTransactions();
+showTransactionsInDOM();
 
 
-btnRegisterTransaction.addEventListener('click', addNewTransact)
+btnRegisterTransaction.addEventListener('click', addNewTransaction)

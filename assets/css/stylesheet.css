@@ -311,6 +311,23 @@ label:first-child {
   background-color: var(--color-dark);
 }
 
+.fieldset-input-radio,
+.div-input-radio {
+  display: flex;
+}
+
+.div-input-radio,
+.div-input-radio input {
+  height: 1.5rem;
+}
+
+.div-input-radio > label {
+  display: flex;
+  margin: 0px 25px 0px 10px;
+  align-items: center;
+}
+
+
 .error {
   margin-top: 10px;
   color: red;
