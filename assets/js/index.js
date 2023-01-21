@@ -72,11 +72,16 @@ function hideMessageErrorInDOM() {
     if (message !== null) message.classList.add("hide");
 }
 
-function renderTransactionsInDOM(transaction) {
+/* verify value of Nature of transaction */
+const verifyNatureTransaction = (obj) => {
+    const natureTransaction = obj["natureOfTransaction"] === "pay" ? "minus" : "add";
+    return natureTransaction;
+}
+
+function renderTransactionsInDOM(transaction, CSSClass) {
     const transactionsList = document.querySelector(".transactions-list");
     let transactionHtml = document.createElement("div");
     transactionHtml.innerHTML = `
-        <div class="card-transaction">
             <div class="body-text-transaction">
                 <p class="type-transaction">${transaction.typeTransaction}</p>
                 <p class="description-transaction">${transaction.descriptionTransaction}</p>
@@ -85,7 +90,9 @@ function renderTransactionsInDOM(transaction) {
               <span>+ R$</span>
               <span>${transaction.valueTransaction}</span>
             </div>
-        </div>`;
+            <div class="tag-nature-transaction"><div>`;
+    transactionHtml.classList.add("card-transaction");
+    transactionHtml.children[2].classList.add(CSSClass);
 
     transactionsList.prepend(transactionHtml);
 }
@@ -93,7 +100,7 @@ function renderTransactionsInDOM(transaction) {
 const showTransactionsInDOM = () => {
     if (getTransactionsOnLocalStorage) {
         const arrAllTransactions = JSON.parse(localStorage.getItem(keyOfDataLocalStorage));
-        arrAllTransactions.forEach(obj => renderTransactionsInDOM(obj));
+        arrAllTransactions.forEach(obj => renderTransactionsInDOM(obj, verifyNatureTransaction(obj)));
     }
     return;
 }
