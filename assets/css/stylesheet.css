@@ -189,12 +189,19 @@ li {
   background-color: #03c988;
 }
 
-.incomes {
+.incomes,
+.green {
   color: var(--color-green) !important;
 }
 
-.expenses {
+.expenses,
+.red {
   color: var(--color-red) !important;
+}
+
+.green,
+.red {
+  font-size: 1.3rem;
 }
 
 .minus {
@@ -203,6 +210,11 @@ li {
 
 .add {
   background-color: var(--color-green);
+}
+
+.meaning-transaction {
+  width: 20px;
+  font-size: 1.2rem;
 }
 
 .type-transaction {

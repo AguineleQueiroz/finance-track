@@ -34,15 +34,21 @@
           <div class="info-finance-header">
             <div class="card-info-finance">
               <span class="title-card">Saldo Atual:</span>
-              <span class="value-card">R$ 5.987,00</span>
+              <span class="value-card green" id="amount">-.----,--</span>
             </div>
             <div class="card-info-finance">
               <span class="title-card">Receitas:</span>
-              <span class="value-card incomes"> + R$ 2.354,00</span>
+              <div class="incomes-div">
+                <span class="green">+</span>
+                <span class="value-card incomes" id="incomes">2.354,00</span>
+              </div>
             </div>
             <div class="card-info-finance">
               <span class="title-card">Despesas:</span>
-              <span class="value-card expenses"> - R$ 1.758,00</span>
+              <div class="expenses-div">
+                <span class="red">-</span>
+                <span class="value-card expenses" id="expenses">1.758,00</span>
+              </div>
             </div>
           </div>
           <!-- Transactions -->
@@ -73,7 +79,14 @@
             <!-- input radio for type action -->
             <div class="fieldset-input-radio">
               <div class="div-input-radio">
-                <input type="radio" id="pay" name="naturetransaction" value="pay" required checked />
+                <input
+                  type="radio"
+                  id="pay"
+                  name="naturetransaction"
+                  value="pay"
+                  required
+                  checked
+                />
                 <label for="pay">Pagar</label>
               </div>
 
