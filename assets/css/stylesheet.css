@@ -40,7 +40,7 @@ li {
   --color-secondary: #3c79f5;
   --color-green: #03c988;
   --color-red: #dc3535;
-  --color-dark: #222222;
+  --color-dark: #222222df;
   --color-white: #ffffff;
   --color-gray: #eeeeee;
   --color-gray-dark: #dbdbdb;
@@ -122,7 +122,7 @@ li {
 }
 
 .title-card {
-  color: var(--color-primary);
+  color: var(--color-dark);
 }
 
 .value-transact {
@@ -141,7 +141,7 @@ li {
 }
 
 .title-box-transactions {
-  color: var(--color-primary);
+  color: var(--color-dark);
   margin-top: 10px;
   font-weight: var(--regular);
 }
@@ -189,18 +189,19 @@ li {
   background-color: #03c988;
 }
 
-.incomes,
-.green {
+.incomes {
   color: var(--color-green) !important;
 }
 
-.expenses,
-.red {
+.blue {
+  color: var(--color-secondary);
+}
+
+.expenses {
   color: var(--color-red) !important;
 }
 
-.green,
-.red {
+.blue {
   font-size: 1.3rem;
 }
 
@@ -221,16 +222,16 @@ li {
   font-weight: var(--semi-bold);
   margin-bottom: 10px;
 }
-/* .card-transaction:last-child {
-  border-bottom: none;
-} */
+
+.symbol-real {
+  margin-right: 5px;
+}
 
 .description-transaction {
   color: var(--color-muted);
 }
-/* footer page ==============================*/
 
-/* modal */
+/* modal ==============================*/
 .hide {
   visibility: hidden;
 }

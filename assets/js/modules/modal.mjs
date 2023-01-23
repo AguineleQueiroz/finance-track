@@ -6,6 +6,7 @@ const modal = document.querySelector(".modal");
 export const openModal = () => {
     if (modal.classList.contains("hide")) {
         modal.classList.remove("hide");
+        document.getElementById("type-transact").value = '';
         document.getElementById("description").value = '';
         document.getElementById("value").value = '';
         modal.classList.add("show");
@@ -17,7 +18,8 @@ export const closeModal = () => {
         modal.classList.remove("show");
         modal.classList.add("hide");
     }
-}
+};
+
 
 btnAddTransact.addEventListener("click", openModal);
 btnCancelModal.addEventListener("click", closeModal);

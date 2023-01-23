@@ -1,62 +1,57 @@
 import { closeModal } from './modules/modal.mjs'
 
-/* events on backend ================================================================================== */
+
+
 const keyOfDataLocalStorage = 'transactions';
 const btnRegisterTransaction = document.querySelector(".btn-add");
 
-/* get all transacts */
 const getTransactionsOnLocalStorage = localStorage.getItem(keyOfDataLocalStorage);
 
-/* add new transact in localStorage */
 function addTransactionInLocalStorage(data) {
     localStorage.setItem(keyOfDataLocalStorage, data);
 }
 
-/* Send new transact to the localStorage */
 function sendDataToLocalStorage(obj) {
     if (getTransactionsOnLocalStorage === null) {
         addTransactionInLocalStorage(JSON.stringify([obj]));
     } else {
-        addTransactionInLocalStorage(JSON.stringify([...JSON.parse(localStorage.getItem(keyOfDataLocalStorage)), obj]));
+        addTransactionInLocalStorage(
+            JSON.stringify(
+                [...JSON.parse(localStorage.getItem(keyOfDataLocalStorage)), obj]
+            )
+        );
     }
 }
 
-const getDataForm = () => {
-    const natureOfTransaction = document.querySelector("input[name=naturetransaction]:checked").value;
-    const typeTransaction = document.getElementById("type-transact").value;
-    const descriptionTransaction = document.getElementById("description").value;
-    const valueTransaction = document.getElementById("value").value;
-    const arr = [natureOfTransaction, typeTransaction, descriptionTransaction, valueTransaction];
-    processDataInputs(...arr);
-}
-
-/* checks whether or not to send data to localStorage */
 function processDataInputs(natureOfTransaction, typeTransaction, descriptionTransaction, valueTransaction) {
-    if (!natureOfTransaction || !typeTransaction || !descriptionTransaction || !valueTransaction) {
+    if (!natureOfTransaction ||
+        !typeTransaction ||
+        !descriptionTransaction ||
+        !valueTransaction) {
+
         showMessageErrorInDOM();
+
     } else {
         hideMessageErrorInDOM();
-        const dataObj = { natureOfTransaction, typeTransaction, descriptionTransaction, valueTransaction }
+        const dataObj = {
+            natureOfTransaction,
+            typeTransaction,
+            descriptionTransaction,
+            valueTransaction
+        }
         sendDataToLocalStorage(dataObj);
         closeModal();
     }
 }
-
-/* refresh list of transactions */
-const refreshListTransactions = () => {
-    const transactionsList = document.querySelector(".transactions-list");
-    transactionsList.innerText = '';
-    showTransactionsInDOM();
+const getDataForm = () => {
+    const natureOfTransaction = document.querySelector("input[name=naturetransaction]:checked").value;
+    const typeTransaction = document.getElementById("type-transact").value;
+    const descriptionTransaction = document.getElementById("description").value;
+    const valueTransaction = document.getElementById("value").value.replace(/[^0-9\\.]+/g, '');
+    const arr = [natureOfTransaction, typeTransaction, descriptionTransaction, valueTransaction];
+    processDataInputs(...arr);
 }
 
-/* call of the functions for the add new transacts */
-const addNewTransaction = (event) => {
-    event.preventDefault();
-    getDataForm();
-    refreshListTransactions();
-}
-
-/* events on html ================================================================================== */
 function showMessageErrorInDOM() {
     const element = document.querySelector(".error");
     if (element === null) {
@@ -65,7 +60,7 @@ function showMessageErrorInDOM() {
         messageElement.innerHTML = `
             <p class="error">
             <img class="exclamation-message-error" src="./assets/img/exclamation.svg" alt="exclamation icon"></img>
-            Preenchimento dos campos é obrigatório.
+            Dados inválidos. Verifique e tente novamente.
             </p>
         `;
         fieldSet.appendChild(messageElement);
@@ -80,10 +75,8 @@ function hideMessageErrorInDOM() {
     if (message !== null) message.classList.add("hide");
 }
 
-/* verify value of Nature of transaction */
 const natureTransactionCssClass = (obj) => obj["natureOfTransaction"] === "pay" ? "minus" : "add";
 
-/* add "+" or "-" before each transaction amount */
 function addTransactionMeaning() {
     const meaning = document.querySelector(".meaning-transaction");
     const tag = document.querySelector(".tag-nature-transaction");
@@ -91,7 +84,6 @@ function addTransactionMeaning() {
     const minus = document.createTextNode('-');
     if (tag) {
         tag.classList.contains("minus") ? meaning.appendChild(minus) : meaning.appendChild(add);
-        meaning.textContent === "-" ? meaning.classList.add("red") : meaning.classList.add("green");
     }
 }
 
@@ -105,6 +97,7 @@ function renderTransactionsInDOM(transaction, CSSClass) {
             </div>
             <div class="value-transact">
               <span class="meaning-transaction"></span>
+              <span class="symbol-real">R$</span>
               <span>${transaction.valueTransaction}</span>
             </div>
             <div class="tag-nature-transaction"><div>`;
@@ -113,42 +106,48 @@ function renderTransactionsInDOM(transaction, CSSClass) {
     transactionsList.prepend(transactionHtml);
 }
 
-// const isNumeric = (value) => {
+const updateAmountIncomes = (obj) => {
+    const incomes = document.getElementById("incomes");
+    if (incomes.textContent === '') {
+        // const valueTransaction = obj["valueTransaction"] 
+    }
+}
 
-// }
+const updateAmountExpenses = (obj) => {
 
-// function updateInfoFinanceValues(obj, natureTransaction) {
-//     const amount = document.getElementById("amount");
-//     if (natureTransaction === "minus") {
-//         const valueTransacion = Number(obj["valueTransaction"]);
+}
 
-//     }
-// }
+const isPayorReceive = (obj) => obj["natureOfTransaction"];
 
-// function updateAmount() {
+function updateInfoFinanceValues(obj) {
+    isPayorReceive(obj) === "receive" ? updateAmountIncomes() : updateAmountExpenses();
+}
 
-// }
-
-// function updateIncomes() {
-
-// }
-
-// function updateExpenses() {
-
-// }
 
 const showTransactionsInDOM = () => {
-    if (getTransactionsOnLocalStorage) {
+    if (localStorage.getItem(keyOfDataLocalStorage)) {
         const arrAllTransactions = JSON.parse(localStorage.getItem(keyOfDataLocalStorage));
         arrAllTransactions.forEach(obj => {
             renderTransactionsInDOM(obj, natureTransactionCssClass(obj));
             addTransactionMeaning();
-
+            updateInfoFinanceValues(obj);
         });
     }
     return;
 }
 
 showTransactionsInDOM();
+
+const refreshListTransactions = () => {
+    const transactionsList = document.querySelector(".transactions-list");
+    transactionsList.innerText = '';
+    showTransactionsInDOM();
+}
+
+const addNewTransaction = (event) => {
+    event.preventDefault();
+    getDataForm();
+    refreshListTransactions();
+}
 
 btnRegisterTransaction.addEventListener('click', addNewTransaction)
