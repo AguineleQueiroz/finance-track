@@ -1,5 +1,5 @@
 import { closeModal } from './modules/modal.mjs'
-
+export { hideMessageErrorInDOM }
 
 
 const keyOfDataLocalStorage = 'transactions';
@@ -27,12 +27,12 @@ function processDataInputs(natureOfTransaction, typeTransaction, descriptionTran
     if (!natureOfTransaction ||
         !typeTransaction ||
         !descriptionTransaction ||
-        !valueTransaction) {
+        !valueTransaction ||
+        valueTransaction === "0") {
 
         showMessageErrorInDOM();
 
     } else {
-        hideMessageErrorInDOM();
         const dataObj = {
             natureOfTransaction,
             typeTransaction,
@@ -60,7 +60,7 @@ function showMessageErrorInDOM() {
         messageElement.innerHTML = `
             <p class="error">
             <img class="exclamation-message-error" src="./assets/img/exclamation.svg" alt="exclamation icon"></img>
-            Dados inválidos. Verifique e tente novamente.
+            Preencha os campos corretamente.
             </p>
         `;
         fieldSet.appendChild(messageElement);
@@ -106,21 +106,36 @@ function renderTransactionsInDOM(transaction, CSSClass) {
     transactionsList.prepend(transactionHtml);
 }
 
-const updateAmountIncomes = (obj) => {
-    const incomes = document.getElementById("incomes");
-    if (incomes.textContent === '') {
-        // const valueTransaction = obj["valueTransaction"] 
+const createNodeHtml = (idField, sumTransactions) => {
+    let spanContent = document.getElementById(idField);
+    const nodeTextValue = "R$ " + sumTransactions;
+    spanContent.textContent = nodeTextValue;
+}
+
+const getTotal = (natureTransaction) => {
+    const allTransactions = JSON.parse(localStorage.getItem(keyOfDataLocalStorage));
+
+    if (allTransactions) {
+        const transactionsValues = allTransactions
+            .filter(item => item.natureOfTransaction === natureTransaction);
+        const sumTransactionsValues = transactionsValues
+            .reduce(
+                (acumulator, currentTransaction) => acumulator + Number(currentTransaction.valueTransaction), 0
+            );
+        return sumTransactionsValues.toFixed(2);
+    } else {
+        return "0.00"
     }
 }
 
-const updateAmountExpenses = (obj) => {
+const updateInfoFinanceValues = () => {
+    const incomes = getTotal("receive");
+    const expenses = getTotal("pay");
+    const amount = incomes - expenses;
 
-}
-
-const isPayorReceive = (obj) => obj["natureOfTransaction"];
-
-function updateInfoFinanceValues(obj) {
-    isPayorReceive(obj) === "receive" ? updateAmountIncomes() : updateAmountExpenses();
+    createNodeHtml("amount", amount)
+    createNodeHtml("incomes", incomes)
+    createNodeHtml("expenses", expenses)
 }
 
 
@@ -130,13 +145,10 @@ const showTransactionsInDOM = () => {
         arrAllTransactions.forEach(obj => {
             renderTransactionsInDOM(obj, natureTransactionCssClass(obj));
             addTransactionMeaning();
-            updateInfoFinanceValues(obj);
         });
     }
     return;
 }
-
-showTransactionsInDOM();
 
 const refreshListTransactions = () => {
     const transactionsList = document.querySelector(".transactions-list");
@@ -148,6 +160,10 @@ const addNewTransaction = (event) => {
     event.preventDefault();
     getDataForm();
     refreshListTransactions();
+    updateInfoFinanceValues();
 }
+
+showTransactionsInDOM();
+updateInfoFinanceValues();
 
 btnRegisterTransaction.addEventListener('click', addNewTransaction)
