@@ -5,14 +5,12 @@ export { hideMessageErrorInDOM }
 const keyOfDataLocalStorage = 'transactions';
 const btnRegisterTransaction = document.querySelector(".btn-add");
 
-const getTransactionsOnLocalStorage = localStorage.getItem(keyOfDataLocalStorage);
-
 function addTransactionInLocalStorage(data) {
     localStorage.setItem(keyOfDataLocalStorage, data);
 }
 
 function sendDataToLocalStorage(obj) {
-    if (getTransactionsOnLocalStorage === null) {
+    if (localStorage.getItem(keyOfDataLocalStorage) === null) {
         addTransactionInLocalStorage(JSON.stringify([obj]));
     } else {
         addTransactionInLocalStorage(
@@ -23,7 +21,8 @@ function sendDataToLocalStorage(obj) {
     }
 }
 
-function processDataInputs(natureOfTransaction, typeTransaction, descriptionTransaction, valueTransaction) {
+function handleDataInputs(natureOfTransaction, typeTransaction,
+    descriptionTransaction, valueTransaction) {
     if (!natureOfTransaction ||
         !typeTransaction ||
         !descriptionTransaction ||
@@ -44,12 +43,22 @@ function processDataInputs(natureOfTransaction, typeTransaction, descriptionTran
     }
 }
 const getDataForm = () => {
-    const natureOfTransaction = document.querySelector("input[name=naturetransaction]:checked").value;
-    const typeTransaction = document.getElementById("type-transact").value;
-    const descriptionTransaction = document.getElementById("description").value;
-    const valueTransaction = document.getElementById("value").value.replace(/[^0-9\\.]+/g, '');
-    const arr = [natureOfTransaction, typeTransaction, descriptionTransaction, valueTransaction];
-    processDataInputs(...arr);
+    const natureOfTransaction = document
+        .querySelector("input[name=naturetransaction]:checked").value;
+    const typeTransaction = document
+        .getElementById("type-transact").value;
+    const descriptionTransaction = document
+        .getElementById("description").value;
+    const valueTransaction = document
+        .getElementById("value").value.replace(/[^0-9\\.]+/g, '');
+    const arr = [
+        natureOfTransaction,
+        typeTransaction,
+        descriptionTransaction,
+        valueTransaction
+    ];
+
+    handleDataInputs(...arr);
 }
 
 function showMessageErrorInDOM() {
@@ -59,7 +68,8 @@ function showMessageErrorInDOM() {
         const messageElement = document.createElement("p");
         messageElement.innerHTML = `
             <p class="error">
-            <img class="exclamation-message-error" src="./assets/img/exclamation.svg" alt="exclamation icon"></img>
+            <img class="exclamation-message-error" 
+            src="./assets/img/exclamation.svg" alt="exclamation icon"></img>
             Preencha os campos corretamente.
             </p>
         `;
@@ -75,7 +85,8 @@ function hideMessageErrorInDOM() {
     if (message !== null) message.classList.add("hide");
 }
 
-const natureTransactionCssClass = (obj) => obj["natureOfTransaction"] === "pay" ? "minus" : "add";
+const natureTransactionCssClass = (obj) =>
+    obj["natureOfTransaction"] === "pay" ? "minus" : "add";
 
 function addTransactionMeaning() {
     const meaning = document.querySelector(".meaning-transaction");
@@ -83,7 +94,8 @@ function addTransactionMeaning() {
     const add = document.createTextNode('+');
     const minus = document.createTextNode('-');
     if (tag) {
-        tag.classList.contains("minus") ? meaning.appendChild(minus) : meaning.appendChild(add);
+        tag.classList.contains("minus") ?
+            meaning.appendChild(minus) : meaning.appendChild(add);
     }
 }
 
@@ -93,7 +105,9 @@ function renderTransactionsInDOM(transaction, CSSClass) {
     transactionHtml.innerHTML = `
             <div class="body-text-transaction">
                 <p class="type-transaction">${transaction.typeTransaction}</p>
-                <p class="description-transaction">${transaction.descriptionTransaction}</p>
+                <p class="description-transaction">
+                ${transaction.descriptionTransaction}
+                </p>
             </div>
             <div class="value-transact">
               <span class="meaning-transaction"></span>
@@ -106,21 +120,23 @@ function renderTransactionsInDOM(transaction, CSSClass) {
     transactionsList.prepend(transactionHtml);
 }
 
-const createNodeHtml = (idField, sumTransactions) => {
+const createTextValuesFinances = (idField, sumTransactions) => {
     let spanContent = document.getElementById(idField);
     const nodeTextValue = "R$ " + sumTransactions;
     spanContent.textContent = nodeTextValue;
 }
 
 const getTotal = (natureTransaction) => {
-    const allTransactions = JSON.parse(localStorage.getItem(keyOfDataLocalStorage));
+    const allTransactions = JSON
+        .parse(localStorage.getItem(keyOfDataLocalStorage));
 
     if (allTransactions) {
         const transactionsValues = allTransactions
             .filter(item => item.natureOfTransaction === natureTransaction);
         const sumTransactionsValues = transactionsValues
             .reduce(
-                (acumulator, currentTransaction) => acumulator + Number(currentTransaction.valueTransaction), 0
+                (acumulator, currentTransaction) =>
+                    acumulator + Number(currentTransaction.valueTransaction), 0
             );
         return sumTransactionsValues.toFixed(2);
     } else {
@@ -133,15 +149,16 @@ const updateInfoFinanceValues = () => {
     const expenses = getTotal("pay");
     const amount = incomes - expenses;
 
-    createNodeHtml("amount", amount)
-    createNodeHtml("incomes", incomes)
-    createNodeHtml("expenses", expenses)
+    createTextValuesFinances("amount", amount)
+    createTextValuesFinances("incomes", incomes)
+    createTextValuesFinances("expenses", expenses)
 }
 
 
 const showTransactionsInDOM = () => {
     if (localStorage.getItem(keyOfDataLocalStorage)) {
-        const arrAllTransactions = JSON.parse(localStorage.getItem(keyOfDataLocalStorage));
+        const arrAllTransactions = JSON
+            .parse(localStorage.getItem(keyOfDataLocalStorage));
         arrAllTransactions.forEach(obj => {
             renderTransactionsInDOM(obj, natureTransactionCssClass(obj));
             addTransactionMeaning();
