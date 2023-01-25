@@ -3,6 +3,7 @@ export { hideMessageErrorInDOM }
 
 
 const keyOfDataLocalStorage = 'transactions';
+const allTransactions = () => localStorage.getItem(keyOfDataLocalStorage);
 const btnRegisterTransaction = document.querySelector(".btn-add");
 
 function addTransactionInLocalStorage(data) {
@@ -10,18 +11,18 @@ function addTransactionInLocalStorage(data) {
 }
 
 function sendDataToLocalStorage(obj) {
-    if (localStorage.getItem(keyOfDataLocalStorage) === null) {
+    if (allTransactions() === null) {
         addTransactionInLocalStorage(JSON.stringify([obj]));
     } else {
         addTransactionInLocalStorage(
             JSON.stringify(
-                [...JSON.parse(localStorage.getItem(keyOfDataLocalStorage)), obj]
+                [...JSON.parse(allTransactions()), obj]
             )
         );
     }
 }
 
-function handleDataInputs(natureOfTransaction, typeTransaction,
+function handleDataInputs(idTransaction, natureOfTransaction, typeTransaction,
     descriptionTransaction, valueTransaction) {
     if (!natureOfTransaction ||
         !typeTransaction ||
@@ -33,6 +34,7 @@ function handleDataInputs(natureOfTransaction, typeTransaction,
 
     } else {
         const dataObj = {
+            idTransaction,
             natureOfTransaction,
             typeTransaction,
             descriptionTransaction,
@@ -42,7 +44,11 @@ function handleDataInputs(natureOfTransaction, typeTransaction,
         closeModal();
     }
 }
+
+const generateID = () => Math.round(Math.random() * 1000);
+
 const getDataForm = () => {
+    const id = generateID();
     const natureOfTransaction = document
         .querySelector("input[name=naturetransaction]:checked").value;
     const typeTransaction = document
@@ -51,7 +57,9 @@ const getDataForm = () => {
         .getElementById("description").value;
     const valueTransaction = document
         .getElementById("value").value.replace(/[^0-9\\.]+/g, '');
+
     const arr = [
+        id,
         natureOfTransaction,
         typeTransaction,
         descriptionTransaction,
@@ -99,26 +107,30 @@ function addTransactionMeaning() {
     }
 }
 
-function renderTransactionsInDOM(transaction, CSSClass) {
+function renderTransactionsInDOM({ id, typeTransaction, descriptionTransaction, valueTransaction }, CSSClass) {
     const transactionsList = document.querySelector(".transactions-list");
     let transactionHtml = document.createElement("div");
     transactionHtml.innerHTML = `
+            <button class="btn-delete">
+                X
+            </button>
             <div class="body-text-transaction">
-                <p class="type-transaction">${transaction.typeTransaction}</p>
+                <p class="type-transaction">${typeTransaction}</p>
                 <p class="description-transaction">
-                ${transaction.descriptionTransaction}
+                ${descriptionTransaction}
                 </p>
             </div>
             <div class="value-transact">
               <span class="meaning-transaction"></span>
               <span class="symbol-real">R$</span>
-              <span>${transaction.valueTransaction}</span>
+              <span>${valueTransaction}</span>
             </div>
             <div class="tag-nature-transaction"><div>`;
     transactionHtml.classList.add("card-transaction");
-    transactionHtml.children[2].classList.add(CSSClass);
+    transactionHtml.children[3].classList.add(CSSClass);
     transactionsList.prepend(transactionHtml);
 }
+
 
 const createTextValuesFinances = (idField, sumTransactions) => {
     let spanContent = document.getElementById(idField);
@@ -127,17 +139,19 @@ const createTextValuesFinances = (idField, sumTransactions) => {
 }
 
 const getTotal = (natureTransaction) => {
-    const allTransactions = JSON
-        .parse(localStorage.getItem(keyOfDataLocalStorage));
+    const transactions = JSON
+        .parse(allTransactions());
 
-    if (allTransactions) {
-        const transactionsValues = allTransactions
+    if (transactions) {
+        const transactionsValues = transactions
             .filter(item => item.natureOfTransaction === natureTransaction);
+
         const sumTransactionsValues = transactionsValues
             .reduce(
                 (acumulator, currentTransaction) =>
                     acumulator + Number(currentTransaction.valueTransaction), 0
             );
+
         return sumTransactionsValues.toFixed(2);
     } else {
         return "0.00"
@@ -156,9 +170,9 @@ const updateInfoFinanceValues = () => {
 
 
 const showTransactionsInDOM = () => {
-    if (localStorage.getItem(keyOfDataLocalStorage)) {
+    if (allTransactions()) {
         const arrAllTransactions = JSON
-            .parse(localStorage.getItem(keyOfDataLocalStorage));
+            .parse(allTransactions());
         arrAllTransactions.forEach(obj => {
             renderTransactionsInDOM(obj, natureTransactionCssClass(obj));
             addTransactionMeaning();
@@ -183,4 +197,4 @@ const addNewTransaction = (event) => {
 showTransactionsInDOM();
 updateInfoFinanceValues();
 
-btnRegisterTransaction.addEventListener('click', addNewTransaction)
+btnRegisterTransaction.addEventListener('click', addNewTransaction);
