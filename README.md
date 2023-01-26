@@ -11,5 +11,5 @@ Consiste em uma app de controle financeiro em que são listados o saldo total de
 - [x] Atualização das Informações sobre Montante
 - [x] Atualização das Informações sobre Despesas
 - [x] Atualização das Informações sobre Receitas
-- [ ] Remover transação<br>
+- [x] Remover transação<br>
 ![image](https://user-images.githubusercontent.com/66737248/213923545-8aabe9e5-61b7-4bc1-97a2-cbc292110d37.png)
