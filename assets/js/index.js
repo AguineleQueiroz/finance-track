@@ -69,6 +69,21 @@ const getDataForm = () => {
     handleDataInputs(...arr);
 }
 
+const updateLocalStorage = (transactions) => {
+    localStorage.clear();
+    addTransactionInLocalStorage(JSON.stringify(transactions));
+    refreshListTransactions();
+    updateInfoFinanceValues();
+}
+
+
+const removeTransaction = (ID) => {
+    const arrAllTransactions = JSON.parse(allTransactions());
+    const transactionsCannotBeRemoved = arrAllTransactions
+        .filter(item => item.idTransaction !== ID);
+    updateLocalStorage(transactionsCannotBeRemoved);
+}
+
 function showMessageErrorInDOM() {
     const element = document.querySelector(".error");
     if (element === null) {
@@ -107,12 +122,14 @@ function addTransactionMeaning() {
     }
 }
 
-function renderTransactionsInDOM({ id, typeTransaction, descriptionTransaction, valueTransaction }, CSSClass) {
+const renderTransactionsInDOM = (
+    { idTransaction, typeTransaction, descriptionTransaction, valueTransaction }, CSSClass) => {
+
     const transactionsList = document.querySelector(".transactions-list");
     let transactionHtml = document.createElement("div");
     transactionHtml.innerHTML = `
             <button class="btn-delete">
-                X
+                <img src="../assets/img/trash.svg"></img>
             </button>
             <div class="body-text-transaction">
                 <p class="type-transaction">${typeTransaction}</p>
@@ -128,9 +145,9 @@ function renderTransactionsInDOM({ id, typeTransaction, descriptionTransaction, 
             <div class="tag-nature-transaction"><div>`;
     transactionHtml.classList.add("card-transaction");
     transactionHtml.children[3].classList.add(CSSClass);
+    transactionHtml.children[0].addEventListener("click", function () { removeTransaction(idTransaction) })
     transactionsList.prepend(transactionHtml);
 }
-
 
 const createTextValuesFinances = (idField, sumTransactions) => {
     let spanContent = document.getElementById(idField);
@@ -163,7 +180,7 @@ const updateInfoFinanceValues = () => {
     const expenses = getTotal("pay");
     const amount = incomes - expenses;
 
-    createTextValuesFinances("amount", amount)
+    createTextValuesFinances("amount", amount.toFixed(2))
     createTextValuesFinances("incomes", incomes)
     createTextValuesFinances("expenses", expenses)
 }
@@ -198,3 +215,4 @@ showTransactionsInDOM();
 updateInfoFinanceValues();
 
 btnRegisterTransaction.addEventListener('click', addNewTransaction);
+
