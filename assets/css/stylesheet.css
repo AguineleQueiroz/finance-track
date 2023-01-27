@@ -36,16 +36,16 @@ li {
   --regular: 400;
   --semi-bold: 600;
   /* colores */
-  --color-primary: #6c00ff;
+  --color-primary: #03c988;
   --color-secondary: #3c79f5;
-  --color-green: #03c988;
+  --color-blue-dark: #6c00ff;
   --color-red: #dc3535;
   --color-dark: #222222df;
   --color-white: #ffffff;
   --color-gray: #eeeeee;
   --color-gray-dark: #dbdbdb;
   --color-muted: #777777;
-  --color-bill: #ffffd0;
+  --color-bill: #fffbc1 /* fdfdd6 */;
 }
 
 .container {
@@ -93,7 +93,7 @@ li {
   height: 6rem;
   background-color: var(--color-bill);
   border-radius: 3px;
-  box-shadow: 0px 1px 5px 0px var(--color-gray-dark);
+  box-shadow: 0px 1.5px 5px 0px var(--color-gray-dark);
   margin-top: 1rem;
 }
 
@@ -157,7 +157,7 @@ li {
 .new-transaction-btn {
   border: none;
   outline: none;
-  background: var(--color-green);
+  background: var(--color-primary);
   padding: 0.5rem 1rem;
   color: var(--color-white);
   cursor: pointer;
@@ -173,11 +173,12 @@ li {
   display: flex;
   justify-content: space-between;
   background-color: var(--color-bill);
-  padding: 1.5rem 2rem;
+  padding: 0.95rem 2rem;
   border-bottom: 1px dashed var(--color-gray-dark);
-  box-shadow: 0px 1px 3px 0px var(--color-gray-dark);
+  box-shadow: 0px 1.5px 3px 0px var(--color-gray-dark);
   border-radius: 2px;
   position: relative;
+  /* margin-bottom: 5px; */
 }
 
 .tag-nature-transaction {
@@ -195,11 +196,12 @@ li {
   outline: none;
   border: none;
   width: 1.5rem;
-  height: 99px;
+  height: 100%;
   background-color: var(--color-red);
   border-bottom: 1px dashed var(--color-gray-dark);
   border-radius: 2px 0 0 2px;
-  visibility: visible;
+  visibility: hidden;
+  box-shadow: -3px 1.5px 3px 1px var(--color-gray-dark);
 }
 
 .card-transaction:hover .btn-delete {
@@ -207,11 +209,11 @@ li {
 }
 
 .incomes {
-  color: var(--color-green) !important;
+  color: var(--color-primary) !important;
 }
 
 .blue {
-  color: var(--color-secondary);
+  color: var(--color-blue-dark);
 }
 
 .expenses {
@@ -227,7 +229,7 @@ li {
 }
 
 .add {
-  background-color: var(--color-green);
+  background-color: var(--color-primary);
 }
 
 .meaning-transaction {
@@ -266,6 +268,7 @@ li {
   top: 0;
   width: 100%;
   height: 100vh;
+  position: fixed;
 }
 
 form {
@@ -276,7 +279,7 @@ form {
 }
 
 .title-form-modal {
-  color: var(--color-primary);
+  color: var(--color-dark);
   font-weight: var(--semi-bold);
 }
 
@@ -303,7 +306,7 @@ form {
 }
 
 .transact-form label {
-  color: var(--color-primary);
+  color: var(--color-dark);
   font-size: smaller;
   font-weight: var(--semi-bold);
 }
@@ -344,7 +347,7 @@ label:first-child {
 }
 
 .btn-add {
-  background-color: var(--color-green);
+  background-color: var(--color-primary);
 }
 
 .btn-cancel {

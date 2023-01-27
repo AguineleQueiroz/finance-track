@@ -124,7 +124,6 @@ function addTransactionMeaning() {
 
 const renderTransactionsInDOM = (
     { idTransaction, typeTransaction, descriptionTransaction, valueTransaction }, CSSClass) => {
-
     const transactionsList = document.querySelector(".transactions-list");
     let transactionHtml = document.createElement("div");
     transactionHtml.innerHTML = `
@@ -138,9 +137,8 @@ const renderTransactionsInDOM = (
                 </p>
             </div>
             <div class="value-transact">
-              <span class="meaning-transaction"></span>
-              <span class="symbol-real">R$</span>
-              <span>${valueTransaction}</span>
+              <span class="meaning-transaction"></span>              
+              <span>${formatMonetaryValues(Number(valueTransaction))}</span>
             </div>
             <div class="tag-nature-transaction"><div>`;
     transactionHtml.classList.add("card-transaction");
@@ -151,7 +149,7 @@ const renderTransactionsInDOM = (
 
 const createTextValuesFinances = (idField, sumTransactions) => {
     let spanContent = document.getElementById(idField);
-    const nodeTextValue = "R$ " + sumTransactions;
+    const nodeTextValue = sumTransactions;
     spanContent.textContent = nodeTextValue;
 }
 
@@ -169,7 +167,7 @@ const getTotal = (natureTransaction) => {
                     acumulator + Number(currentTransaction.valueTransaction), 0
             );
 
-        return sumTransactionsValues.toFixed(2);
+        return Number(sumTransactionsValues);
     } else {
         return "0.00"
     }
@@ -178,13 +176,18 @@ const getTotal = (natureTransaction) => {
 const updateInfoFinanceValues = () => {
     const incomes = getTotal("receive");
     const expenses = getTotal("pay");
-    const amount = incomes - expenses;
+    const incomesFormated = formatMonetaryValues(incomes);
+    const expensesFormated = formatMonetaryValues(expenses);
+    const amount = formatMonetaryValues(incomes - expenses);
 
-    createTextValuesFinances("amount", amount.toFixed(2))
-    createTextValuesFinances("incomes", incomes)
-    createTextValuesFinances("expenses", expenses)
+    createTextValuesFinances("amount", amount);
+    createTextValuesFinances("incomes", incomesFormated);
+    createTextValuesFinances("expenses", expensesFormated);
 }
 
+const formatMonetaryValues = (value) => {
+    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
 
 const showTransactionsInDOM = () => {
     if (allTransactions()) {
