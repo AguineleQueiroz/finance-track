@@ -2,8 +2,7 @@
 Consiste em uma app de controle financeiro em que são listados o saldo total de uma pessoa, suas despesas, suas receitas e suas transações recentes.
 
 ## Em desenvolvimento
-
-- [x] Adicionar Transação
+- [ ] Cadastro e Login
 - [x] Listar Transações
 - [x] Leitura das Transações registradas no LocalStorage
 - [x] Tag de Diferenciação para Despesas e Receitas
