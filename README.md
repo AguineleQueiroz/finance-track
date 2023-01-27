@@ -12,4 +12,6 @@ Consiste em uma app de controle financeiro em que são listados o saldo total de
 - [x] Atualização das Informações sobre Receitas
 - [x] Remover transação
 - [ ] Conversão monetária<br>
-![image](https://user-images.githubusercontent.com/66737248/213923545-8aabe9e5-61b7-4bc1-97a2-cbc292110d37.png)
+###
+![1](https://user-images.githubusercontent.com/66737248/215181865-e9364e04-d919-4091-958c-ffff3a6b4003.png)
+
