@@ -169,7 +169,7 @@ const getTotal = (natureTransaction) => {
 
         return Number(sumTransactionsValues);
     } else {
-        return "0.00"
+        return 0.00;
     }
 }
 
