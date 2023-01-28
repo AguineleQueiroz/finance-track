@@ -45,7 +45,7 @@ li {
   --color-gray: #eeeeee;
   --color-gray-dark: #dbdbdb;
   --color-muted: #777777;
-  --color-bill: #fffbc1 /* fdfdd6 */;
+  --color-bill: #fffbc1;
 }
 
 .container {
@@ -58,7 +58,7 @@ li {
 
 /* header */
 .header-page {
-  background-color: var(--color-primary);
+  background-color: var(--color-dark);
 }
 
 .nav {
@@ -69,18 +69,22 @@ li {
 }
 
 .nav-brand {
+  display: flex;
   font-family: var(--font-primary);
   font-size: var(--font-medium);
   font-weight: var(--semi-bold);
   color: var(--color-white);
 }
 
-.profile-name {
-  font-family: var(--font-primary);
-  font-weight: var(--light);
-  color: var(--color-white);
+.nav-brand > img {
+  max-width: 32px;
+  max-height: 32px;
 }
 
+.nav-brand > span {
+  padding-top: 5px;
+  margin-left: 5px;
+}
 /* content header ===========================*/
 .content {
   padding-top: 0.5rem;
@@ -166,248 +170,5 @@ li {
 }
 
 .new-transaction-btn:hover {
-  background-color: var(--color-primary);
-}
-
-.card-transaction {
-  display: flex;
-  justify-content: space-between;
-  background-color: var(--color-bill);
-  padding: 0.95rem 2rem;
-  border-bottom: 1px dashed var(--color-gray-dark);
-  box-shadow: 0px 1.5px 3px 0px var(--color-gray-dark);
-  border-radius: 2px;
-  position: relative;
-  /* margin-bottom: 5px; */
-}
-
-.tag-nature-transaction {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0.25rem;
-  height: 100%;
-}
-
-.btn-delete {
-  position: absolute;
-  top: 0;
-  left: -1.5rem;
-  outline: none;
-  border: none;
-  width: 1.5rem;
-  height: 100%;
-  background-color: var(--color-red);
-  border-bottom: 1px dashed var(--color-gray-dark);
-  border-radius: 2px 0 0 2px;
-  visibility: hidden;
-  box-shadow: -3px 1.5px 3px 1px var(--color-gray-dark);
-}
-
-.card-transaction:hover .btn-delete {
-  visibility: visible;
-}
-
-.incomes {
-  color: var(--color-primary) !important;
-}
-
-.blue {
-  color: var(--color-blue-dark);
-}
-
-.expenses {
-  color: var(--color-red) !important;
-}
-
-.blue {
-  font-size: 1.3rem;
-}
-
-.minus {
-  background-color: var(--color-red);
-}
-
-.add {
-  background-color: var(--color-primary);
-}
-
-.meaning-transaction {
-  width: 20px;
-  font-size: 1.2rem;
-}
-
-.type-transaction {
-  font-weight: var(--semi-bold);
-  margin-bottom: 10px;
-}
-
-.symbol-real {
-  margin-right: 5px;
-}
-
-.description-transaction {
-  color: var(--color-muted);
-}
-
-/* modal ==============================*/
-.hide {
-  visibility: hidden;
-}
-
-.show {
-  visibility: visible;
-}
-
-.modal {
-  display: grid;
-  grid-template-columns: 100%;
-  place-items: center;
-  background-color: #60606093;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-  gap: 1rem;
-}
-
-.title-form-modal {
-  color: var(--color-dark);
-  font-weight: var(--semi-bold);
-}
-
-.modal-content {
-  width: 30rem;
-  height: auto;
-  background-color: var(--color-white);
-  border-radius: 2px;
-}
-
-.transact-form {
-  display: flex;
-  flex-direction: column;
-  border: none;
-  outline: none;
-}
-
-.transact-form input {
-  width: 100%;
-  height: 38px;
-  border: 1px solid var(--color-muted);
-  outline: transparent;
-  padding: 0 10px;
-}
-
-.transact-form label {
-  color: var(--color-dark);
-  font-size: smaller;
-  font-weight: var(--semi-bold);
-}
-
-.desc-label,
-.value-label {
-  margin-bottom: 5px;
-}
-
-label {
-  margin-top: 20px;
-}
-
-label:first-child {
-  margin-top: 0px;
-}
-
-.transact-form input:focus {
-  background-color: var(--color-gray);
-  border: 1px solid var(--color-primary);
-}
-
-.btn-div {
-  display: flex;
-  justify-content: end;
-  margin-top: 10px;
-  gap: 10px;
-}
-
-.btn {
-  padding: 0.5rem 1.5rem;
-  width: max-content;
-  border: none;
-  outline: none;
-  color: var(--color-white);
-  text-transform: uppercase;
-  font-size: 0.75rem;
-}
-
-.btn-add {
-  background-color: var(--color-primary);
-}
-
-.btn-cancel {
-  background-color: var(--color-muted);
-}
-
-.btn-add:hover {
-  background-color: var(--color-primary);
-}
-
-.btn-cancel:hover {
   background-color: var(--color-dark);
-}
-
-.fieldset-input-radio,
-.div-input-radio {
-  display: flex;
-}
-
-.div-input-radio,
-.div-input-radio input {
-  height: 1.5rem;
-}
-
-.div-input-radio > label {
-  display: flex;
-  margin: 0px 25px 0px 10px;
-  align-items: center;
-}
-
-.error {
-  margin-top: 10px;
-  color: red;
-  font-size: small;
-}
-
-/* media queries */
-@media only screen and (max-width: 992px) {
-  .card-info-finance {
-    flex-direction: column;
-  }
-}
-
-@media only screen and (max-width: 668px) {
-  .info-finance-header {
-    flex-direction: column;
-    height: auto;
-  }
-  .card-info-finance {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 6rem;
-    border-bottom: 1px dashed var(--color-gray-dark);
-  }
-  .card-info-finance:last-child {
-    border-bottom: none;
-  }
-  .card-info-finance:nth-child(even) {
-    border-left: none;
-    border-right: none;
-  }
 }

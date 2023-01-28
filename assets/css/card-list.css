@@ -1,0 +1,76 @@
+.card-transaction {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-bill);
+  padding: 0.95rem 2rem;
+  border-bottom: 1px dashed var(--color-gray-dark);
+  box-shadow: 0px 1.5px 3px 0px var(--color-gray-dark);
+  border-radius: 2px;
+  position: relative;
+  /* margin-bottom: 5px; */
+}
+
+.tag-nature-transaction {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0.25rem;
+  height: 100%;
+}
+
+.btn-delete {
+  position: absolute;
+  top: 0;
+  left: 0;
+  outline: none;
+  border: none;
+  width: 1.5rem;
+  height: 100%;
+  background-color: var(--color-red);
+  border-bottom: 1px dashed var(--color-gray-dark);
+  border-radius: 2px 0 0 2px;
+  visibility: hidden;
+  box-shadow: 0px 1.5px 3px 1px var(--color-gray-dark);
+}
+
+.card-transaction:hover .btn-delete {
+  visibility: visible;
+}
+
+.type-transaction {
+  font-weight: var(--semi-bold);
+  margin-bottom: 10px;
+}
+
+.description-transaction {
+  color: var(--color-muted);
+}
+
+.incomes {
+  color: var(--color-primary) !important;
+}
+
+.blue {
+  color: var(--color-blue-dark);
+}
+
+.expenses {
+  color: var(--color-red) !important;
+}
+
+.blue {
+  font-size: 1.3rem;
+}
+
+.minus {
+  background-color: var(--color-red);
+}
+
+.add {
+  background-color: var(--color-primary);
+}
+
+.meaning-transaction {
+  width: 20px;
+  font-size: 1.2rem;
+}

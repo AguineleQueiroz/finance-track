@@ -1,0 +1,4 @@
+/* mobile < 992px */
+.card-info-finance {
+  flex-direction: column;
+}
