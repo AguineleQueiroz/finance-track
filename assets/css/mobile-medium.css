@@ -1,4 +1,8 @@
 /* mobile < 668px */
+.container {
+  Padding: 0 1rem;
+}
+
 .info-finance-header {
   flex-direction: column;
   height: auto;
