@@ -51,7 +51,7 @@ li {
 .container {
   display: grid;
   grid-template-columns: 100%;
-  padding: 0 1rem;
+  padding: 0 4rem;
   margin: 0 auto;
   max-width: 1366px;
 }
