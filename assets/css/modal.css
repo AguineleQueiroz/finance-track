@@ -32,7 +32,7 @@ form {
 }
 
 .modal-content {
-  width: 30rem;
+  max-width: 30rem;
   height: auto;
   background-color: var(--color-white);
   border-radius: 2px;
