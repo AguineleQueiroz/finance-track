@@ -1,0 +1,11 @@
+.info-finance-header {
+  flex-direction: column;
+  height: auto;
+}
+
+.card-info-finance {
+  display: flex;
+  flex-direction: row !important;
+  height: 6rem;
+  border-bottom: 1px dashed var(--color-gray-dark);
+}

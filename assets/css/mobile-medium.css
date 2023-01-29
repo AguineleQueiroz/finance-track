@@ -3,19 +3,6 @@
   padding: 0 1rem;
 }
 
-.info-finance-header {
-  flex-direction: column;
-  height: auto;
-}
-
-.card-info-finance {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 6rem;
-  border-bottom: 1px dashed var(--color-gray-dark);
-}
-
 .card-info-finance:last-child {
   border-bottom: none;
 }
