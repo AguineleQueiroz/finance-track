@@ -16,9 +16,21 @@
     <link rel="stylesheet" href="./assets/css/stylesheet.css" />
     <link rel="stylesheet" href="./assets/css/card-list.css" />
     <link rel="stylesheet" href="./assets/css/modal.css" />
-    <link rel="stylesheet" href="./assets/css/mobile-small.css" media="screen and (max-width: 470px)"/>
-    <link rel="stylesheet" href="./assets/css/mobile-medium.css" media="screen and (max-width: 668px)"/>
-    <link rel="stylesheet" href="./assets/css/mobile-large.css" media="screen and (max-width: 992px)"/>
+    <link
+      rel="stylesheet"
+      href="./assets/css/mobile-small.css"
+      media="screen and (max-width: 470px)"
+    />
+    <link
+      rel="stylesheet"
+      href="./assets/css/mobile-medium.css"
+      media="screen and (max-width: 668px)"
+    />
+    <link
+      rel="stylesheet"
+      href="./assets/css/mobile-large.css"
+      media="screen and (max-width: 992px)"
+    />
   </head>
   <body>
     <!-- header -->
@@ -30,9 +42,8 @@
             <span>Finance Control</span></a
           >
           <div class="dropdown-menu">
-            <ul class="navbar">
-              <li><a class="profile-name" href="#"></a></li>
-            </ul>
+            <!-- <label class="label-currency" for="currency">Currency</label> -->
+            <select name="currency" id="currency"></select>
           </div>
         </nav>
       </div>
@@ -147,10 +158,8 @@
     <!-- end-modal -->
 
     <!-- footer -->
-    <!-- <footer class="footer">
-      <p>Copyright &#169; FinanceMasters - 2023. All rights reserved.</p>
-    </footer> -->
     <!-- end - footer -->
     <script type="module" src="./assets/js/index.js"></script>
+    <script type="module" src="./assets/js/exchange.js"></script>
   </body>
 </html>

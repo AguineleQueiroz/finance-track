@@ -1,5 +1,11 @@
 import { closeModal } from './modules/modal.mjs'
-export { hideMessageErrorInDOM }
+export {
+    hideMessageErrorInDOM,
+    allTransactions,
+    addTransactionMeaning,
+    natureTransactionCssClass,
+    renderTransactionsInDOM
+}
 
 
 const keyOfDataLocalStorage = 'transactions';
@@ -189,11 +195,11 @@ const formatMonetaryValues = (value) => {
     return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
-const showTransactionsInDOM = () => {
+function showTransactionsInDOM() {
     if (allTransactions()) {
         const arrAllTransactions = JSON
             .parse(allTransactions());
-        arrAllTransactions.forEach(obj => {
+        arrAllTransactions.forEach(async obj => {
             renderTransactionsInDOM(obj, natureTransactionCssClass(obj));
             addTransactionMeaning();
         });
@@ -218,4 +224,3 @@ showTransactionsInDOM();
 updateInfoFinanceValues();
 
 btnRegisterTransaction.addEventListener('click', addNewTransaction);
-

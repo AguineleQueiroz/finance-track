@@ -172,3 +172,23 @@ li {
 .new-transaction-btn:hover {
   background-color: var(--color-dark);
 }
+
+/* select Currencies =========================================== */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url(../img/chevron-down.png) no-repeat center right;
+  border: 1px solid #333;
+  font-size: 15px;
+  padding: 5px;
+  color: var(--color-white);
+}
+
+#currency {
+  border: none;
+  outline: none;
+  width: 4em;
+  height: 2em;
+  border-radius: 1px;
+}
