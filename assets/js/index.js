@@ -9,13 +9,26 @@ export {
 
 
 const keyOfDataLocalStorage = 'transactions';
+
+/**
+ * 
+ * @returns {Object} - objeto 'stringnificado'.
+ */
 const allTransactions = () => localStorage.getItem(keyOfDataLocalStorage);
 const btnRegisterTransaction = document.querySelector(".btn-add");
 
+/**
+ * 
+ * @param {object} data - objeto contendo id, natureza da transação, tipo, descrição e valor
+ */
 function addTransactionInLocalStorage(data) {
     localStorage.setItem(keyOfDataLocalStorage, data);
 }
 
+/**
+ * 
+ * @param {Object} obj 
+ */
 function sendDataToLocalStorage(obj) {
     if (allTransactions() === null) {
         addTransactionInLocalStorage(JSON.stringify([obj]));
@@ -28,6 +41,14 @@ function sendDataToLocalStorage(obj) {
     }
 }
 
+/**
+ * 
+ * @param {number} idTransaction 
+ * @param {string} natureOfTransaction 
+ * @param {string} typeTransaction 
+ * @param {string} descriptionTransaction 
+ * @param {number} valueTransaction 
+ */
 function handleDataInputs(idTransaction, natureOfTransaction, typeTransaction,
     descriptionTransaction, valueTransaction) {
     if (!natureOfTransaction ||
@@ -51,6 +72,10 @@ function handleDataInputs(idTransaction, natureOfTransaction, typeTransaction,
     }
 }
 
+/**
+ * 
+ * @returns {number} int
+ */
 const generateID = () => Math.round(Math.random() * 1000);
 
 const getDataForm = () => {
@@ -75,6 +100,10 @@ const getDataForm = () => {
     handleDataInputs(...arr);
 }
 
+/**
+ * 
+ * @param {object} transactions 
+ */
 const updateLocalStorage = (transactions) => {
     localStorage.clear();
     addTransactionInLocalStorage(JSON.stringify(transactions));
@@ -82,7 +111,10 @@ const updateLocalStorage = (transactions) => {
     updateInfoFinanceValues();
 }
 
-
+/**
+ * 
+ * @param {number} ID 
+ */
 const removeTransaction = (ID) => {
     const arrAllTransactions = JSON.parse(allTransactions());
     const transactionsCannotBeRemoved = arrAllTransactions
@@ -114,8 +146,14 @@ function hideMessageErrorInDOM() {
     if (message !== null) message.classList.add("hide");
 }
 
+/**
+ * 
+ * @param {object} obj 
+ * @returns {string} 'add' ou 'minus'
+ */
 const natureTransactionCssClass = (obj) =>
     obj["natureOfTransaction"] === "pay" ? "minus" : "add";
+
 
 function addTransactionMeaning() {
     const meaning = document.querySelector(".meaning-transaction");
@@ -159,6 +197,11 @@ const createTextValuesFinances = (idField, sumTransactions) => {
     spanContent.textContent = nodeTextValue;
 }
 
+/**
+ * 
+ * @param {string} natureTransaction 
+ * @returns {number} soma total das transações.
+ */
 const getTotal = (natureTransaction) => {
     const transactions = JSON
         .parse(allTransactions());
@@ -191,9 +234,15 @@ const updateInfoFinanceValues = () => {
     createTextValuesFinances("expenses", expensesFormated);
 }
 
+/**
+ * 
+ * @param {number} value 
+ * @returns {string} 
+ */
 const formatMonetaryValues = (value) => {
     return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
+
 
 function showTransactionsInDOM() {
     if (allTransactions()) {
@@ -204,7 +253,6 @@ function showTransactionsInDOM() {
             addTransactionMeaning();
         });
     }
-    return;
 }
 
 const refreshListTransactions = () => {
