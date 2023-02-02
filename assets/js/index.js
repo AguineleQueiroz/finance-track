@@ -172,7 +172,7 @@ const renderTransactionsInDOM = (
     let transactionHtml = document.createElement("div");
     transactionHtml.innerHTML = `
             <button class="btn-delete">
-                <img src="../assets/img/trash.svg"></img>
+                <img src="assets/img/trash.svg"></img>
             </button>
             <div class="body-text-transaction">
                 <p class="type-transaction">${typeTransaction}</p>
