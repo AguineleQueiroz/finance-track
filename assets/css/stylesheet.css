@@ -193,9 +193,10 @@ li {
   align-items: center;
 }
 
-.container-transactions > img {
+#arrow-down-transactions-list{
   position: absolute;
   bottom: .5rem;
+  visibility: hidden;
 }
 
 ::-webkit-scrollbar {

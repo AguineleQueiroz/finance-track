@@ -107,7 +107,6 @@ const getDataForm = () => {
 const updateLocalStorage = (transactions) => {
     localStorage.clear();
     addTransactionInLocalStorage(JSON.stringify(transactions));
-    refreshListTransactions();
     updateInfoFinanceValues();
 }
 
@@ -120,6 +119,7 @@ const removeTransaction = (ID) => {
     const transactionsCannotBeRemoved = arrAllTransactions
         .filter(item => item.idTransaction !== ID);
     updateLocalStorage(transactionsCannotBeRemoved);
+    refreshListTransactions();
 }
 
 function showMessageErrorInDOM() {
@@ -172,7 +172,7 @@ const renderTransactionsInDOM = (
     let transactionHtml = document.createElement("div");
     transactionHtml.innerHTML = `
             <button class="btn-delete">
-                <img src="assets/img/trash.svg"></img>
+                <img id="delete-btn-img" src="assets/img/trash.svg"></img>
             </button>
             <div class="body-text-transaction">
                 <p class="type-transaction">${typeTransaction}</p>
@@ -248,11 +248,19 @@ function showTransactionsInDOM() {
     if (allTransactions()) {
         const arrAllTransactions = JSON
             .parse(allTransactions());
-        arrAllTransactions.forEach(async obj => {
+        showArrowScroll();
+        arrAllTransactions.forEach(obj => {
             renderTransactionsInDOM(obj, natureTransactionCssClass(obj));
             addTransactionMeaning();
         });
+
     }
+}
+
+const showArrowScroll = () => {
+    const lenthArrTransactions = JSON.parse(allTransactions()).length;
+    const arrowDown = document.getElementById("arrow-down-transactions-list");
+    lenthArrTransactions > 4 ? arrowDown.style.visibility = 'visible' : arrowDown.style.visibility = 'hidden';
 }
 
 const refreshListTransactions = () => {
