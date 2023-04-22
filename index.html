@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- title -->
-    <title>Finance Control - Gerencie o seu dinheiro aqui!</title>
+    <title>FinanceTrack - Gerencie o seu dinheiro aqui!</title>
     <!-- favicon -->
-    <link
-      rel="shortcut icon"
-      href="./assets/img/favicon.ico"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon"/>
     <!-- css -->
     <link rel="stylesheet" href="./assets/css/stylesheet.css" />
     <link rel="stylesheet" href="./assets/css/card-list.css" />
@@ -39,7 +35,7 @@
         <nav class="nav">
           <a href="#" class="nav-brand"
             ><img src="./assets/img/favicon.ico" alt="Logomarca da aplicação" />
-            <span>Finance Control</span></a
+            <span>FinanceTrack</span></a
           >
           <div class="dropdown-menu">
           </div>
@@ -157,9 +153,75 @@
       </div>
     </div>
     <!-- end-modal -->
+    <!-- edit modal -->
+    <div class="edit-modal hide" id="modal">
+      <div class="modal-content">
+        <form action="#">
+          <legend class="title-form-modal">Nova Transação</legend>
+          <fieldset class="transact-form">
+            <!-- input radio for type action -->
+            <div class="fieldset-input-radio">
+              <div class="div-input-radio">
+                <input
+                  type="radio"
+                  id="pay-edit"
+                  name="naturetransactionedit"
+                  value="pay"
+                  required
+                  checked
+                />
+                <label for="pay">Pagar</label>
+              </div>
 
-    <!-- footer -->
-    <!-- end - footer -->
-    <script type="module" src="./assets/js/index.js"></script>
+              <div class="div-input-radio">
+                <input
+                  type="radio"
+                  id="receive-edit"
+                  name="naturetransactionedit"
+                  value="receive"
+                  required
+                />
+                <label for="receive">Receber</label>
+              </div>
+            </div>
+            <!-- type transact  -->
+            <label class="desc-label" for="description"
+              >Tipo da Transação</label
+            >
+            <input
+              type="text"
+              name="Type"
+              id="type-transact-edit"
+              placeholder=" ex.Pix, TED, etc"
+              required
+            />
+            <!-- description transact -->
+            <label class="desc-label" for="description">Descrição</label>
+            <input
+              type="text"
+              name="description"
+              id="description-edit"
+              placeholder="Descrição"
+              required
+            />
+            <!-- price transact -->
+            <label class="value-label" for="value">Valor</label>
+            <input
+              type="text"
+              name="value"
+              id="value-edit"
+              placeholder="ex.: 0000.00"
+              required
+            />
+          </fieldset>
+          <div class="btn-div">
+            <button class="btn btn-cancel-edit" type="reset">Cancelar</button>
+            <button class="btn btn-save" type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- end-edit-modal -->
+    <script type="module" src="./assets/js/back-end.js"></script>
   </body>
 </html>

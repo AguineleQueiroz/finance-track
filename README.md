@@ -13,7 +13,9 @@ Você pode testar a aplicação [aqui](https://aguinelequeiroz.github.io/finance
 - [x] Atualização das Informações sobre Montante
 - [x] Atualização das Informações sobre Despesas
 - [x] Atualização das Informações sobre Receitas
+- [x] Editar transação
 - [x] Remover transação
+
 ###
 
 ## Interface
