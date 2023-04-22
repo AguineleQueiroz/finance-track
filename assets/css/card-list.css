@@ -7,30 +7,32 @@
   box-shadow: 0px 1.5px 3px 0px var(--color-gray-dark);
   border-radius: 2px;
   position: relative;
-  /* margin-bottom: 5px; */
 }
 
 .tag-nature-transaction {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   width: 0.25rem;
   height: 100%;
 }
 
-.btn-delete {
+.btn-options {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   outline: none;
-  border: none;
+  border-left: 1px dashed var(--color-gray);
+  border-right: none;
+  border-top: none;
+  border-bottom: none!important;
   width: 1.5rem;
   height: 100%;
-  background-color: var(--color-red);
+  background: none;
   border-bottom: 1px dashed var(--color-gray-dark);
-  border-radius: 2px 0 0 2px;
-  visibility: hidden;
-  box-shadow: 0px 1.5px 3px 1px var(--color-gray-dark);
+  border-radius: 0 2px 2px 0;
+  visibility: visible;
+  cursor: pointer;
 }
 
 .card-transaction:hover .btn-delete {
@@ -73,4 +75,36 @@
 .meaning-transaction {
   width: 20px;
   font-size: 1.2rem;
+}
+
+.hideOptCard {
+  display: none;
+}
+
+.showOptCard {
+  display: block;
+}
+
+.dropdown-opt-card {
+  position: absolute;
+  top: 3.5rem;
+  right: 8px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-dark);
+  padding: 5px 10px;
+  width: 6rem;
+  z-index: 10000;
+}
+
+.dropdown-menu {
+  line-height: 1.5rem;
+}
+
+.dropdown-menu .delete,
+.dropdown-menu .edit {
+  cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+  color: var(--color-blue-dark);
 }

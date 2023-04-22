@@ -7,7 +7,8 @@
   visibility: visible;
 }
 
-.modal {
+.modal,
+.edit-modal {
   display: grid;
   grid-template-columns: 100%;
   place-items: center;
@@ -92,13 +93,16 @@ label:first-child {
   color: var(--color-white);
   text-transform: uppercase;
   font-size: 0.75rem;
+  cursor: pointer;
 }
 
-.btn-add {
+.btn-add,
+.btn-save {
   background-color: var(--color-primary);
 }
 
-.btn-cancel {
+.btn-cancel,
+.btn-cancel-edit {
   background-color: var(--color-muted);
 }
 
