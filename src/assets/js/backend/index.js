@@ -1,7 +1,7 @@
-import { closeModal, closeModalEdit, editModal } from './modules/modal.mjs'
+import { closeModal, closeModalEdit, editModal } from '../frontend/modules/modal.mjs'
 import { 
     showTransactionsInDOM, updateInfoFinanceValues, refreshListTransactions, showMessageErrorInDOM
-} from './modules/front-end.mjs'
+} from '../frontend/modules/index.mjs'
 
 const keyOfDataLocalStorage = 'transactions';
 

@@ -1,4 +1,4 @@
-import { allTransactions, removeTransaction, editTransaction } from '../back-end.js';
+import { allTransactions, removeTransaction, editTransaction } from '../../backend/index.js';
 
 export function showMessageErrorInDOM() {
     const element = document.querySelector(".error");

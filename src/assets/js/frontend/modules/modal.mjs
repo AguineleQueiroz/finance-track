@@ -1,4 +1,4 @@
-import { hideMessageErrorInDOM, renderOptionsCard } from "../modules/front-end.mjs";
+import { hideMessageErrorInDOM, renderOptionsCard } from "./index.mjs";
 /* active modal */
 const btnAddTransact = document.querySelector(".new-transaction-btn");
 const btnCancelModal = document.querySelector(".btn-cancel");
