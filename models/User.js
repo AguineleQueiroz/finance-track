@@ -26,4 +26,15 @@ const userSchema = new Schema({
     }
 });
 const User = mongoose.model('User', userSchema);
-module.exports = { User };
+
+/* Model Functions */
+
+async function findEmail(userEmailObj) {
+    return await User.findOne(userEmailObj);
+}
+
+async function findUser(userId, keysExceptionsStr) {
+    return await User.findById(userId, keysExceptionsStr);
+}
+
+module.exports = { User, findEmail, findUser };

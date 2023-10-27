@@ -1,4 +1,4 @@
-const { User } = require('../models/User');
+const { User, findEmail } = require('../models/User');
 const { bcrypt } = require('../Utils/util');
 
 async function createUser(draftUser) {
@@ -12,13 +12,15 @@ async function createUser(draftUser) {
     });
     await user.validate();    
     user.password = pswdHash;
+    await user.save();
     return true;
 }
 
-const register = async ( request, response ) => {
+const signup = async ( request, response ) => {
     const { name, email, password, confirm_password } = request.body;
     try {
-        const existEmail = await User.findOne({email:email});
+        const existEmail = await findEmail({ email:email });
+
         if(existEmail) return response.status(422).json({ msg: "Email is already in use."})
 
         if( password !== confirm_password ) return response.status(422).json({ msg: "Passwords doesnt match."});
@@ -42,4 +44,4 @@ const register = async ( request, response ) => {
         });
     }
 }
-module.exports = { register }
+module.exports = { signup }
